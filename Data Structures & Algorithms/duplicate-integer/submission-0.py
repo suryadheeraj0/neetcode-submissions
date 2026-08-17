@@ -1,8 +1,12 @@
 class Solution:
     def hasDuplicate(self, nums: List[int]) -> bool:
-        s = set()
+        d = {}
         for i in nums:
-            if i in s:
+            if i in d:
+                d[i]+=1
+            else:
+                d[i]=1
+        for i in d:
+            if d[i]>1:
                 return True
-            s.add(i)
         return False
