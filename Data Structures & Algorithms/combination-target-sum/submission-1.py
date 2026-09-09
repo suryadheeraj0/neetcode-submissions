@@ -1,17 +1,17 @@
 class Solution:
     def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
-        res = []
-        l = []
-        def comb_sum(nums, res, target, ind):
-            if sum(l)>=target:
-                if sum(l)==target:
-                    res.append(l[:])
+        self.res = []
+        def comb(nums, index, target, l):
+            if index>=len(nums):
                 return
-            if ind>len(nums)-1:
+            if sum(l)==target:
+                self.res.append(l[:])
                 return
-            l.append(nums[ind])
-            comb_sum(nums, res, target, ind)
+            elif sum(l)>target:
+                return
+            l.append(nums[index])
+            comb(nums, index, target, l)
             l.pop()
-            comb_sum(nums, res, target, ind+1)
-        comb_sum(nums,res, target, 0)
-        return res
+            comb(nums, index+1, target, l)
+        comb(nums, 0, target, [])
+        return self.res
