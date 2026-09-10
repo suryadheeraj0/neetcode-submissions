@@ -1,15 +1,14 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
-        l = []
-        res = []
-        def per(l,res,nums):
+        self.res = []
+        def per(nums, l):
             if len(l)==len(nums):
-                print(l)
-                res.append(l[:])
+                self.res.append(l[:])
+                return
             for i in range(len(nums)):
                 if nums[i] not in l:
                     l.append(nums[i])
-                    per(l, res, nums)
+                    per(nums, l)
                     l.pop()
-        per(l,res,nums)
-        return res
+        per(nums, [])
+        return self.res
